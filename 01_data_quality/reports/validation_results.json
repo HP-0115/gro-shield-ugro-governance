@@ -1,0 +1,92 @@
+[
+  {
+    "expectation_type": "expect_column_values_to_be_between",
+    "column": "application_date",
+    "success": false,
+    "result": "{}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_between",
+    "column": "gst_registration_date",
+    "success": false,
+    "result": "{}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_not_be_null",
+    "column": "bureau_score",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 298, 'unexpected_percent': 1.9866666666666668, 'partial_unexpected_list': [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], 'partial_unexpected_counts': [{'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}], 'partial_unexpected_index_list': [108, 291, 324, 337, 341, 457, 515, 552, 622, 646, 865, 940, 972, 1001, 1127, 1174, 1182, 1239, 1262, 1264]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_between",
+    "column": "bureau_score",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 120, 'unexpected_percent': 0.8162154808869542, 'partial_unexpected_list': [-1.0, 999.0, -1.0, 999.0, 950.0, 999.0, 999.0, 950.0, -1.0, 0.0, 999.0, 0.0, 950.0, 950.0, 950.0, -1.0, -1.0, 999.0, 950.0, 999.0], 'missing_count': 298, 'missing_percent': 1.9866666666666668, 'unexpected_percent_total': 0.8, 'unexpected_percent_nonmissing': 0.8162154808869542, 'partial_unexpected_counts': [{'value': 999.0, 'count': 7}, {'value': 950.0, 'count': 6}, {'value': -1.0, 'count': 5}, {'value': 0.0, 'count': 2}], 'partial_unexpected_index_list': [70, 356, 536, 597, 604, 674, 895, 945, 983, 1025, 1036, 1205, 1414, 1444, 1693, 1758, 1761, 1912, 1998, 2033]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_not_be_null",
+    "column": "avg_monthly_balance",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 202, 'unexpected_percent': 1.3466666666666667, 'partial_unexpected_list': [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], 'partial_unexpected_counts': [{'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}], 'partial_unexpected_index_list': [105, 182, 213, 479, 527, 591, 597, 638, 646, 653, 762, 780, 969, 1082, 1260, 1266, 1280, 1343, 1347, 1573]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_not_be_null",
+    "column": "avg_monthly_credit_turnover",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 197, 'unexpected_percent': 1.3133333333333335, 'partial_unexpected_list': [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], 'partial_unexpected_counts': [{'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}], 'partial_unexpected_index_list': [80, 123, 533, 607, 622, 801, 809, 840, 843, 1114, 1131, 1217, 1416, 1419, 1470, 1689, 1839, 1926, 1972, 2017]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_not_be_null",
+    "column": "gst_filing_regularity_pct",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 236, 'unexpected_percent': 1.5733333333333333, 'partial_unexpected_list': [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], 'partial_unexpected_counts': [{'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}, {'value': nan, 'count': 1}], 'partial_unexpected_index_list': [24, 109, 290, 305, 384, 450, 544, 594, 644, 742, 855, 940, 1065, 1074, 1076, 1106, 1339, 1450, 1538, 1594]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_between",
+    "column": "gst_filing_regularity_pct",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 75, 'unexpected_percent': 0.5079924139799513, 'partial_unexpected_list': [239.3, 170.8, 144.2, 133.3, 216.4, 183.6, 172.8, 166.7, 120.7, 214.3, 185.8, 178.8, 168.1, 210.9, 136.3, 224.6, 204.3, 145.0, 201.5, 179.8], 'missing_count': 236, 'missing_percent': 1.5733333333333333, 'unexpected_percent_total': 0.5, 'unexpected_percent_nonmissing': 0.5079924139799513, 'partial_unexpected_counts': [{'value': 120.7, 'count': 1}, {'value': 133.3, 'count': 1}, {'value': 136.3, 'count': 1}, {'value': 144.2, 'count': 1}, {'value': 145.0, 'count': 1}, {'value': 166.7, 'count': 1}, {'value': 168.1, 'count': 1}, {'value': 170.8, 'count': 1}, {'value': 172.8, 'count': 1}, {'value': 178.8, 'count': 1}, {'value': 179.8, 'count': 1}, {'value': 183.6, 'count': 1}, {'value': 185.8, 'count': 1}, {'value': 201.5, 'count': 1}, {'value': 204.3, 'count': 1}, {'value': 210.9, 'count': 1}, {'value': 214.3, 'count': 1}, {'value': 216.4, 'count': 1}, {'value': 224.6, 'count': 1}, {'value': 239.3, 'count': 1}], 'partial_unexpected_index_list': [118, 366, 463, 827, 1061, 1402, 1455, 2342, 2815, 3106, 3298, 3320, 3524, 3735, 3776, 4249, 4321, 4405, 4510, 4798]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_between",
+    "column": "interest_rate_pct",
+    "success": true,
+    "result": "{'element_count': 15000, 'unexpected_count': 75, 'unexpected_percent': 0.5, 'partial_unexpected_list': [1497.0, 1077.0, 2080.0, 2699.0, 1722.0, 2126.0, 1735.0, 1205.0, 2211.0, 1731.0, 1096.0, 2056.0, 1168.0, 1239.0, 1433.0, 2023.0, 2303.0, 2091.0, 2498.0, 1994.0], 'missing_count': 0, 'missing_percent': 0.0, 'unexpected_percent_total': 0.5, 'unexpected_percent_nonmissing': 0.5, 'partial_unexpected_counts': [{'value': 1077.0, 'count': 1}, {'value': 1096.0, 'count': 1}, {'value': 1168.0, 'count': 1}, {'value': 1205.0, 'count': 1}, {'value': 1239.0, 'count': 1}, {'value': 1433.0, 'count': 1}, {'value': 1497.0, 'count': 1}, {'value': 1722.0, 'count': 1}, {'value': 1731.0, 'count': 1}, {'value': 1735.0, 'count': 1}, {'value': 1994.0, 'count': 1}, {'value': 2023.0, 'count': 1}, {'value': 2056.0, 'count': 1}, {'value': 2080.0, 'count': 1}, {'value': 2091.0, 'count': 1}, {'value': 2126.0, 'count': 1}, {'value': 2211.0, 'count': 1}, {'value': 2303.0, 'count': 1}, {'value': 2498.0, 'count': 1}, {'value': 2699.0, 'count': 1}], 'partial_unexpected_index_list': [354, 576, 1070, 1301, 1329, 1464, 1777, 1961, 2008, 2025, 2096, 2334, 2465, 2582, 2602, 2776, 2821, 2880, 2921, 3003]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_between",
+    "column": "requested_loan_amount",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 90, 'unexpected_percent': 0.6, 'partial_unexpected_list': [-154759.13, -950328.67, -262856.91, -2102885.14, -192243.07, -288007.13, -202523.49, -323521.86, -148877.5, -190948.93, -85204.87, -1323092.12, -298640.96, -403321.69, -418824.44, -422580.89, -569016.17, -452432.77, -2269244.09, -223004.42], 'missing_count': 0, 'missing_percent': 0.0, 'unexpected_percent_total': 0.6, 'unexpected_percent_nonmissing': 0.6, 'partial_unexpected_counts': [{'value': -2269244.09, 'count': 1}, {'value': -2102885.14, 'count': 1}, {'value': -1323092.12, 'count': 1}, {'value': -950328.67, 'count': 1}, {'value': -569016.17, 'count': 1}, {'value': -452432.77, 'count': 1}, {'value': -422580.89, 'count': 1}, {'value': -418824.44, 'count': 1}, {'value': -403321.69, 'count': 1}, {'value': -323521.86, 'count': 1}, {'value': -298640.96, 'count': 1}, {'value': -288007.13, 'count': 1}, {'value': -262856.91, 'count': 1}, {'value': -223004.42, 'count': 1}, {'value': -202523.49, 'count': 1}, {'value': -192243.07, 'count': 1}, {'value': -190948.93, 'count': 1}, {'value': -154759.13, 'count': 1}, {'value': -148877.5, 'count': 1}, {'value': -85204.87, 'count': 1}], 'partial_unexpected_index_list': [215, 236, 354, 883, 1043, 1216, 1627, 1898, 1957, 2223, 2611, 2634, 2714, 2744, 3077, 3456, 3530, 3585, 3595, 3600]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_in_set",
+    "column": "state",
+    "success": true,
+    "result": "{'element_count': 15000, 'unexpected_count': 50, 'unexpected_percent': 0.333555703802535, 'partial_unexpected_list': ['delhi ncr', 'delhi ncr', 'TamilNadu', 'MH', 'MH', 'delhi ncr', 'MH', 'MH', 'Unknown', 'Unknown', 'Unknown', 'MH', 'MH', 'TamilNadu', 'Unknown', 'TamilNadu', 'Unknown', 'MH', 'MH', 'delhi ncr'], 'missing_count': 10, 'missing_percent': 0.06666666666666667, 'unexpected_percent_total': 0.33333333333333337, 'unexpected_percent_nonmissing': 0.333555703802535, 'partial_unexpected_counts': [{'value': 'MH', 'count': 8}, {'value': 'Unknown', 'count': 5}, {'value': 'delhi ncr', 'count': 4}, {'value': 'TamilNadu', 'count': 3}], 'partial_unexpected_index_list': [893, 1233, 2231, 2548, 2767, 2971, 3134, 3412, 3610, 3616, 3735, 3969, 4298, 4316, 4362, 5087, 5123, 5166, 5244, 5245]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_in_set",
+    "column": "loan_status",
+    "success": true,
+    "result": "{'element_count': 15000, 'unexpected_count': 34, 'unexpected_percent': 0.22683301087464142, 'partial_unexpected_list': ['Under Review', 'Pending', '1', 'approved', '1', 'approved', '1', 'approved', '1', 'approved', 'approved', 'Under Review', 'approved', 'Pending', 'Under Review', '1', 'Under Review', '1', '1', '1'], 'missing_count': 11, 'missing_percent': 0.07333333333333333, 'unexpected_percent_total': 0.22666666666666668, 'unexpected_percent_nonmissing': 0.22683301087464142, 'partial_unexpected_counts': [{'value': '1', 'count': 8}, {'value': 'approved', 'count': 6}, {'value': 'Under Review', 'count': 4}, {'value': 'Pending', 'count': 2}], 'partial_unexpected_index_list': [40, 181, 1101, 2048, 2087, 2394, 2516, 3698, 3735, 3770, 3812, 4481, 6051, 6148, 6419, 7532, 7673, 7873, 9613, 10002]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_match_regex",
+    "column": "pan_number",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 90, 'unexpected_percent': 0.6, 'partial_unexpected_list': ['DCTOP00', 'YSSHX84', 'NSPRJ69', 'OOKRB84', 'MTGRV71', 'MRCBT05', 'IZMSM20', 'ZASFC40', 'LBLZG72', 'SWKCU41', 'XETJV25', 'NPYDH30', 'AEHJM90', 'BXHBV61', 'HDRWC16', 'PMARE27', 'ZQKMG27', 'FEJAS08', 'QWYQA92', 'JFGOB53'], 'missing_count': 0, 'missing_percent': 0.0, 'unexpected_percent_total': 0.6, 'unexpected_percent_nonmissing': 0.6, 'partial_unexpected_counts': [{'value': 'AEHJM90', 'count': 1}, {'value': 'BXHBV61', 'count': 1}, {'value': 'DCTOP00', 'count': 1}, {'value': 'FEJAS08', 'count': 1}, {'value': 'HDRWC16', 'count': 1}, {'value': 'IZMSM20', 'count': 1}, {'value': 'JFGOB53', 'count': 1}, {'value': 'LBLZG72', 'count': 1}, {'value': 'MRCBT05', 'count': 1}, {'value': 'MTGRV71', 'count': 1}, {'value': 'NPYDH30', 'count': 1}, {'value': 'NSPRJ69', 'count': 1}, {'value': 'OOKRB84', 'count': 1}, {'value': 'PMARE27', 'count': 1}, {'value': 'QWYQA92', 'count': 1}, {'value': 'SWKCU41', 'count': 1}, {'value': 'XETJV25', 'count': 1}, {'value': 'YSSHX84', 'count': 1}, {'value': 'ZASFC40', 'count': 1}, {'value': 'ZQKMG27', 'count': 1}], 'partial_unexpected_index_list': [0, 185, 236, 245, 374, 463, 526, 618, 696, 1204, 1497, 1631, 1728, 2058, 2138, 2377, 2584, 2605, 3566, 3624]}"
+  },
+  {
+    "expectation_type": "expect_column_values_to_be_unique",
+    "column": "applicant_id",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 120, 'unexpected_percent': 0.8, 'partial_unexpected_list': ['UGRO-APP-113991', 'UGRO-APP-100144', 'UGRO-APP-103240', 'UGRO-APP-100919', 'UGRO-APP-107906', 'UGRO-APP-101124', 'UGRO-APP-103352', 'UGRO-APP-101224', 'UGRO-APP-101383', 'UGRO-APP-101516', 'UGRO-APP-101544', 'UGRO-APP-105255', 'UGRO-APP-101748', 'UGRO-APP-101785', 'UGRO-APP-106764', 'UGRO-APP-102021', 'UGRO-APP-110674', 'UGRO-APP-108001', 'UGRO-APP-110349', 'UGRO-APP-107112'], 'missing_count': 0, 'missing_percent': 0.0, 'unexpected_percent_total': 0.8, 'unexpected_percent_nonmissing': 0.8, 'partial_unexpected_counts': [{'value': 'UGRO-APP-100144', 'count': 1}, {'value': 'UGRO-APP-100919', 'count': 1}, {'value': 'UGRO-APP-101124', 'count': 1}, {'value': 'UGRO-APP-101224', 'count': 1}, {'value': 'UGRO-APP-101383', 'count': 1}, {'value': 'UGRO-APP-101516', 'count': 1}, {'value': 'UGRO-APP-101544', 'count': 1}, {'value': 'UGRO-APP-101748', 'count': 1}, {'value': 'UGRO-APP-101785', 'count': 1}, {'value': 'UGRO-APP-102021', 'count': 1}, {'value': 'UGRO-APP-103240', 'count': 1}, {'value': 'UGRO-APP-103352', 'count': 1}, {'value': 'UGRO-APP-105255', 'count': 1}, {'value': 'UGRO-APP-106764', 'count': 1}, {'value': 'UGRO-APP-107112', 'count': 1}, {'value': 'UGRO-APP-107906', 'count': 1}, {'value': 'UGRO-APP-108001', 'count': 1}, {'value': 'UGRO-APP-110349', 'count': 1}, {'value': 'UGRO-APP-110674', 'count': 1}, {'value': 'UGRO-APP-113991', 'count': 1}], 'partial_unexpected_index_list': [99, 144, 682, 919, 960, 1124, 1128, 1224, 1383, 1516, 1544, 1563, 1748, 1785, 1857, 2021, 2842, 2994, 3132, 3218]}"
+  },
+  {
+    "expectation_type": "expect_column_pair_values_a_to_be_greater_than_b",
+    "column": "N/A",
+    "success": false,
+    "result": "{'element_count': 15000, 'unexpected_count': 196, 'unexpected_percent': 1.3066666666666666, 'partial_unexpected_list': [(np.float64(307764.72), np.float64(443155.25)), (np.float64(-154759.13), np.float64(110642.27)), (np.float64(-950328.67), np.float64(0.0)), (np.float64(-262856.91), np.float64(255813.91)), (np.float64(903882.15), np.float64(1302212.96)), (np.float64(-2102885.14), np.float64(0.0)), (np.float64(-192243.07), np.float64(163062.92)), (np.float64(367244.12), np.float64(528199.78)), (np.float64(1021937.45), np.float64(1251756.58)), (np.float64(-288007.13), np.float64(0.0)), (np.float64(220216.85), np.float64(321084.61)), (np.float64(167633.39), np.float64(276898.71)), (np.float64(111348.19), np.float64(452977.06)), (np.float64(328513.79), np.float64(451710.92)), (np.float64(-202523.49), np.float64(146391.79)), (np.float64(181296.68), np.float64(267780.16)), (np.float64(-323521.86), np.float64(219266.27)), (np.float64(704624.24), np.float64(958512.92)), (np.float64(-148877.5), np.float64(145190.99)), (np.float64(150947.81), np.float64(203692.22))], 'missing_count': 0, 'missing_percent': 0.0, 'unexpected_percent_total': 1.3066666666666666, 'unexpected_percent_nonmissing': 1.3066666666666666, 'partial_unexpected_counts': [{'value': (np.float64(-2102885.14), np.float64(0.0)), 'count': 1}, {'value': (np.float64(-950328.67), np.float64(0.0)), 'count': 1}, {'value': (np.float64(-323521.86), np.float64(219266.27)), 'count': 1}, {'value': (np.float64(-288007.13), np.float64(0.0)), 'count': 1}, {'value': (np.float64(-262856.91), np.float64(255813.91)), 'count': 1}, {'value': (np.float64(-202523.49), np.float64(146391.79)), 'count': 1}, {'value': (np.float64(-192243.07), np.float64(163062.92)), 'count': 1}, {'value': (np.float64(-154759.13), np.float64(110642.27)), 'count': 1}, {'value': (np.float64(-148877.5), np.float64(145190.99)), 'count': 1}, {'value': (np.float64(111348.19), np.float64(452977.06)), 'count': 1}, {'value': (np.float64(150947.81), np.float64(203692.22)), 'count': 1}, {'value': (np.float64(167633.39), np.float64(276898.71)), 'count': 1}, {'value': (np.float64(181296.68), np.float64(267780.16)), 'count': 1}, {'value': (np.float64(220216.85), np.float64(321084.61)), 'count': 1}, {'value': (np.float64(307764.72), np.float64(443155.25)), 'count': 1}, {'value': (np.float64(328513.79), np.float64(451710.92)), 'count': 1}, {'value': (np.float64(367244.12), np.float64(528199.78)), 'count': 1}, {'value': (np.float64(704624.24), np.float64(958512.92)), 'count': 1}, {'value': (np.float64(903882.15), np.float64(1302212.96)), 'count': 1}, {'value': (np.float64(1021937.45), np.float64(1251756.58)), 'count': 1}], 'partial_unexpected_index_list': [131, 215, 236, 354, 565, 883, 1043, 1104, 1207, 1216, 1327, 1358, 1450, 1574, 1627, 1635, 1898, 1908, 1957, 2187]}"
+  }
+]
