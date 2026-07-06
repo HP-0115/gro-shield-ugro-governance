@@ -1,0 +1,7 @@
+dimension,issues_injected,rows_affected,violation_rate_pct,dimension_score,ge_status
+Completeness,1350,1324,8.83,91.2,FLAGGED
+Accuracy,360,357,2.38,97.6,FLAGGED
+Validity,195,193,1.29,98.7,FLAGGED
+Uniqueness,60,60,0.4,99.6,FLAGGED
+Consistency,225,225,1.5,98.5,FLAGGED
+Timeliness,180,180,1.2,98.8,FLAGGED
