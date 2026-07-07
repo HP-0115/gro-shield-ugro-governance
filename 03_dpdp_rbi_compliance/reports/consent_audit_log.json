@@ -1,0 +1,33 @@
+[
+  {
+    "event": "CONSENT_GIVEN",
+    "applicant_id": "UGRO-APP-100042",
+    "category": "bureau",
+    "consent_id": "009c48f0-3c9e-4993-ad0a-a1143d7e2446",
+    "purpose": "Credit risk assessment via CIBIL/Experian bureau pull",
+    "timestamp": "2026-07-07T07:18:03.945934Z"
+  },
+  {
+    "event": "CONSENT_GIVEN",
+    "applicant_id": "UGRO-APP-100042",
+    "category": "bank_statement",
+    "consent_id": "329171d4-da09-46e5-8184-f1b4aa7f8e96",
+    "purpose": "Cash flow analysis via Account Aggregator",
+    "timestamp": "2026-07-07T07:18:03.945949Z"
+  },
+  {
+    "event": "CONSENT_GIVEN",
+    "applicant_id": "UGRO-APP-100042",
+    "category": "gst",
+    "consent_id": "b6bbb3d6-cc86-49b8-8468-2ef2ae9a9938",
+    "purpose": "Revenue verification via GSTN API",
+    "timestamp": "2026-07-07T07:18:03.945957Z"
+  },
+  {
+    "event": "CONSENT_WITHDRAWN",
+    "applicant_id": "UGRO-APP-100042",
+    "category": "bank_statement",
+    "consent_id": "329171d4-da09-46e5-8184-f1b4aa7f8e96",
+    "timestamp": "2026-07-07T07:18:03.945973Z"
+  }
+]
