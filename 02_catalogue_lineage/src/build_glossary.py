@@ -1,0 +1,709 @@
+"""
+build_glossary.py
+Builds a 50+ term business glossary covering credit risk, MSME business,
+data/technical, and regulatory/compliance vocabulary used across the
+UGRO Capital GRO Shield governance assessment.
+
+Output: glossary/business_glossary.json and glossary/business_glossary.csv
+"""
+
+import json
+import csv
+from datetime import date
+
+
+CREDIT_RISK_TERMS = [
+    {
+        "term": "Bureau Score",
+        "category": "Credit & Risk",
+        "definition": (
+            "A numerical score between 300 and 900 assigned by a credit "
+            "information company (CIBIL, Experian, Equifax, or CRIF) that "
+            "summarises an individual or business's creditworthiness based "
+            "on their historical repayment behaviour. Higher scores indicate "
+            "lower credit risk. A score below 650 is generally considered "
+            "subprime in Indian MSME lending."
+        ),
+        "source_system": "SRC-002",
+        "field_name": "bureau_score",
+        "related_terms": ["DPD", "Credit Utilization Ratio", "Write-Off"],
+        "regulatory_reference": "Credit Information Companies Regulation Act 2005",
+    },
+    {
+        "term": "DPD (Days Past Due)",
+        "category": "Credit & Risk",
+        "definition": (
+            "The number of days a borrower is late on a scheduled loan "
+            "repayment, measured from the contractual due date. DPD_30 "
+            "indicates at least 30 days overdue; DPD_90 indicates at least "
+            "90 days overdue. DPD_90 is the RBI threshold for classifying "
+            "a loan as a Non-Performing Asset (NPA). In this dataset, "
+            "dpd_30_count_12m and dpd_90_count_12m count occurrences "
+            "within the prior 12 months."
+        ),
+        "source_system": "SRC-002",
+        "field_name": "dpd_30_count_12m, dpd_90_count_12m",
+        "related_terms": ["NPA", "Bureau Score", "Write-Off"],
+        "regulatory_reference": "RBI Prudential Norms on Income Recognition and Asset Classification",
+    },
+    {
+        "term": "NPA (Non-Performing Asset)",
+        "category": "Credit & Risk",
+        "definition": (
+            "A loan or advance where the borrower has not made interest "
+            "or principal repayments for 90 days or more (DPD_90+). "
+            "NBFCs are required by RBI to classify such assets as NPAs "
+            "and make provisions against them. NPA classification directly "
+            "impacts an NBFC's capital adequacy and profitability."
+        ),
+        "source_system": "MDL-001",
+        "field_name": "default_flag",
+        "related_terms": ["DPD", "Write-Off", "Bureau Score"],
+        "regulatory_reference": "RBI Master Direction — Non-Banking Financial Companies",
+    },
+    {
+        "term": "Credit Utilization Ratio",
+        "category": "Credit & Risk",
+        "definition": (
+            "The proportion of a borrower's total available revolving credit "
+            "that is currently in use, expressed as a value between 0 and 1. "
+            "A ratio above 0.7 (70%) is generally considered a negative "
+            "credit signal, indicating the borrower is heavily dependent on "
+            "available credit. Calculated as outstanding revolving balance "
+            "divided by total revolving credit limit."
+        ),
+        "source_system": "SRC-002",
+        "field_name": "credit_utilization_ratio",
+        "related_terms": ["Bureau Score", "Active Loan Count"],
+        "regulatory_reference": "None specific — standard credit risk metric",
+    },
+    {
+        "term": "Write-Off",
+        "category": "Credit & Risk",
+        "definition": (
+            "A lender's accounting action of removing an unrecoverable loan "
+            "from its balance sheet after exhausting recovery efforts. A "
+            "write-off in a borrower's credit history is among the most "
+            "severe negative signals in credit assessment, indicating a "
+            "prior lender concluded the debt was uncollectable. Represented "
+            "as a binary flag (0/1) in this dataset."
+        ),
+        "source_system": "SRC-002",
+        "field_name": "write_off_flag",
+        "related_terms": ["NPA", "DPD", "Bureau Score"],
+        "regulatory_reference": "RBI Prudential Norms on Income Recognition and Asset Classification",
+    },
+    {
+        "term": "Bounce Count",
+        "category": "Credit & Risk",
+        "definition": (
+            "The number of times a cheque or electronic payment instruction "
+            "(NACH/ECS mandate) was returned unpaid by the borrower's bank "
+            "due to insufficient funds within a given period. In this dataset "
+            "measured over 6 months. A high bounce count is a strong negative "
+            "indicator of cash flow stress and repayment discipline."
+        ),
+        "source_system": "SRC-003",
+        "field_name": "bounce_count_6m",
+        "related_terms": ["DPD", "Average Monthly Balance"],
+        "regulatory_reference": "None specific — standard banking behaviour metric",
+    },
+    {
+        "term": "Credit Inquiry",
+        "category": "Credit & Risk",
+        "definition": (
+            "A request made to a credit bureau to pull a borrower's credit "
+            "report, typically triggered when a borrower applies for credit. "
+            "Multiple inquiries in a short period (credit hungry behaviour) "
+            "are treated as a negative signal by credit models, as they may "
+            "indicate financial distress or aggressive borrowing. Measured "
+            "here as count over 6 months."
+        ),
+        "source_system": "SRC-002",
+        "field_name": "credit_inquiries_6m",
+        "related_terms": ["Bureau Score", "Active Loan Count"],
+        "regulatory_reference": "Credit Information Companies Regulation Act 2005",
+    },
+    {
+        "term": "Cash Deposit Ratio",
+        "category": "Credit & Risk",
+        "definition": (
+            "The proportion of total bank credits that arrive as cash "
+            "deposits rather than electronic transfers, expressed as a "
+            "value between 0 and 1. A high cash deposit ratio may indicate "
+            "a business operating significantly outside the formal banking "
+            "system, which reduces the reliability of bank statement data "
+            "as a proxy for total business revenue."
+        ),
+        "source_system": "SRC-003",
+        "field_name": "cash_deposit_ratio",
+        "related_terms": [
+            "Average Monthly Credit Turnover",
+            "Banking Relationship Count",
+        ],
+        "regulatory_reference": "None specific — standard bank statement metric",
+    },
+]
+
+
+MSME_BUSINESS_TERMS = [
+    {
+        "term": "MSME (Micro, Small and Medium Enterprise)",
+        "category": "MSME Business",
+        "definition": (
+            "A business classified under the MSME Development Act 2006 "
+            "based on annual turnover thresholds revised in 2020: Micro "
+            "(turnover up to ₹5 crore), Small (₹5–50 crore), Medium "
+            "(₹50–250 crore). MSMEs constitute approximately 30% of India's "
+            "GDP and employ over 110 million people. UGRO Capital exclusively "
+            "targets MSME borrowers, making accurate MSME classification "
+            "a prerequisite for regulatory reporting."
+        ),
+        "source_system": "SRC-001",
+        "field_name": "sector, entity_type",
+        "related_terms": ["Business Vintage", "Entity Type", "GST Turnover"],
+        "regulatory_reference": "MSME Development Act 2006, amended 2020",
+    },
+    {
+        "term": "Business Vintage",
+        "category": "MSME Business",
+        "definition": (
+            "The number of years a business has been in continuous operation, "
+            "measured from the date of incorporation or registration to the "
+            "loan application date. A key credit signal — longer vintage "
+            "indicates business stability and survival through economic cycles. "
+            "In MSME lending, businesses under 2 years old are typically "
+            "classified as startups and assessed under different risk criteria."
+        ),
+        "source_system": "SRC-001",
+        "field_name": "business_vintage_years",
+        "related_terms": ["MSME", "Entity Type"],
+        "regulatory_reference": "None specific — standard underwriting criterion",
+    },
+    {
+        "term": "Entity Type",
+        "category": "MSME Business",
+        "definition": (
+            "The legal structure under which a business is registered. "
+            "Four types are recognised in this dataset: Proprietorship "
+            "(single owner, no legal separation between owner and business), "
+            "Partnership (two or more owners under Partnership Act 1932), "
+            "Private Limited Company (incorporated under Companies Act 2013, "
+            "limited liability), and LLP (Limited Liability Partnership, "
+            "hybrid structure under LLP Act 2008). Entity type affects "
+            "credit assessment because it determines personal liability, "
+            "governance requirements, and financial statement availability."
+        ),
+        "source_system": "SRC-001",
+        "field_name": "entity_type",
+        "related_terms": ["MSME", "Business Vintage"],
+        "regulatory_reference": "Companies Act 2013, LLP Act 2008, Partnership Act 1932",
+    },
+    {
+        "term": "GST (Goods and Services Tax)",
+        "category": "MSME Business",
+        "definition": (
+            "India's unified indirect tax introduced in 2017, replacing "
+            "multiple state and central taxes. Businesses with annual "
+            "turnover above ₹20 lakh (₹10 lakh in special category states) "
+            "are required to register for GST. For MSME lenders, GST filing "
+            "data provides an independently verified, government-sourced "
+            "proxy for business revenue that is harder to manipulate than "
+            "self-reported financials."
+        ),
+        "source_system": "SRC-004",
+        "field_name": "gst_number, gst_registration_date",
+        "related_terms": [
+            "GSTIN", "GST Filing Regularity",
+            "Monthly Average GST Turnover",
+        ],
+        "regulatory_reference": "GST Act 2017",
+    },
+    {
+        "term": "GSTIN (GST Identification Number)",
+        "category": "MSME Business",
+        "definition": (
+            "A unique 15-character alphanumeric identifier assigned to every "
+            "GST-registered business in India. Format: 2-digit state code + "
+            "10-character PAN + 1-digit entity code + Z + 1 check character. "
+            "The GSTIN embeds the PAN of the business, enabling cross-system "
+            "identity verification between tax and credit records. Invalid "
+            "or mismatched GSTINs indicate KYC data quality issues."
+        ),
+        "source_system": "SRC-004",
+        "field_name": "gstin",
+        "related_terms": ["GST", "PAN"],
+        "regulatory_reference": "GST Act 2017",
+    },
+    {
+        "term": "PAN (Permanent Account Number)",
+        "category": "MSME Business",
+        "definition": (
+            "A unique 10-character alphanumeric identifier issued by the "
+            "Income Tax Department of India to every taxpayer. Format: "
+            "5 letters + 4 digits + 1 letter (e.g. ABCDE1234F). The fourth "
+            "character encodes the taxpayer type (P for individual, C for "
+            "company, F for firm). PAN is the primary KYC identifier in "
+            "Indian financial services and is mandatory for loan applications "
+            "above ₹50,000."
+        ),
+        "source_system": "SRC-001",
+        "field_name": "pan_number",
+        "related_terms": ["GSTIN", "KYC"],
+        "regulatory_reference": "Income Tax Act 1961, RBI KYC Master Direction",
+    },
+    {
+        "term": "GST Filing Regularity",
+        "category": "MSME Business",
+        "definition": (
+            "The percentage of expected GST returns that a business has "
+            "filed on time over a given period, expressed as 0-100%. "
+            "Regular GST filing indicates operational discipline and "
+            "regulatory compliance. Irregular filing may indicate business "
+            "stress, cash flow problems, or attempts to conceal revenue. "
+            "UGRO Capital uses this as a behavioural credit signal."
+        ),
+        "source_system": "SRC-004",
+        "field_name": "gst_filing_regularity_pct",
+        "related_terms": ["GST", "GSTIN", "Monthly Average GST Turnover"],
+        "regulatory_reference": "GST Act 2017",
+    },
+    {
+        "term": "Account Aggregator",
+        "category": "MSME Business",
+        "definition": (
+            "An RBI-regulated entity that facilitates secure, consent-based "
+            "sharing of financial data between financial information providers "
+            "(banks, NBFCs) and financial information users (lenders, advisors). "
+            "Introduced under RBI's Account Aggregator framework in 2021. "
+            "For MSME lenders, Account Aggregators enable frictionless bank "
+            "statement data access with explicit borrower consent, replacing "
+            "manual PDF statement uploads."
+        ),
+        "source_system": "SRC-003",
+        "field_name": "avg_monthly_balance, avg_monthly_credit_turnover",
+        "related_terms": ["DPDP Act", "Consent", "Bank Statement Analyzer"],
+        "regulatory_reference": "RBI Account Aggregator Framework 2021",
+    },
+]
+
+
+DATA_TECHNICAL_TERMS = [
+    {
+        "term": "Data Lineage",
+        "category": "Data & Technical",
+        "definition": (
+            "The documented chain of custody that tracks how data moves "
+            "from its origin source system through transformations, "
+            "aggregations, and processing steps to its final destination "
+            "in a model, report, or decision. Data lineage answers the "
+            "question: where did this value come from, and what happened "
+            "to it along the way? It is essential for debugging data "
+            "quality issues, assessing model risk, and demonstrating "
+            "regulatory compliance."
+        ),
+        "source_system": "DRV-001",
+        "field_name": "N/A — framework concept",
+        "related_terms": ["Data Catalogue", "Feature Store", "Data Asset"],
+        "regulatory_reference": "RBI Model Risk Guidelines",
+    },
+    {
+        "term": "Data Catalogue",
+        "category": "Data & Technical",
+        "definition": (
+            "A structured inventory of all data assets within an organisation, "
+            "documenting metadata such as asset descriptions, field definitions, "
+            "data owners, sensitivity classifications, and lineage. A data "
+            "catalogue enables data discovery — the ability to find, understand, "
+            "and trust data assets without relying on tribal knowledge. "
+            "Industry tools include DataHub, Alation, Collibra, and Apache Atlas."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — framework concept",
+        "related_terms": ["Data Lineage", "Business Glossary", "Data Asset"],
+        "regulatory_reference": "RBI Digital Lending Guidelines, DPDP Act 2023",
+    },
+    {
+        "term": "Feature Store",
+        "category": "Data & Technical",
+        "definition": (
+            "A centralised repository that stores, manages, and serves "
+            "engineered features for machine learning models. Features are "
+            "derived from raw data through transformations such as aggregations, "
+            "ratios, and rolling window calculations. A feature store ensures "
+            "consistency between features used during model training and those "
+            "used during live inference, preventing training-serving skew. "
+            "UGRO Capital's GRO Score Feature Store contains 25,000+ features."
+        ),
+        "source_system": "DRV-001",
+        "field_name": "N/A — system concept",
+        "related_terms": ["Data Lineage", "Model Drift", "Training-Serving Skew"],
+        "regulatory_reference": "RBI Model Risk Guidelines",
+    },
+    {
+        "term": "Model Drift",
+        "category": "Data & Technical",
+        "definition": (
+            "The degradation of a machine learning model's predictive "
+            "performance over time, caused by changes in the statistical "
+            "properties of input data (data drift) or changes in the "
+            "relationship between inputs and the target variable "
+            "(concept drift). For credit scoring models, economic shocks "
+            "such as COVID-19 or interest rate cycles can cause rapid "
+            "concept drift. Detected using metrics such as Population "
+            "Stability Index (PSI) and Kolmogorov-Smirnov statistic."
+        ),
+        "source_system": "MDL-001",
+        "field_name": "N/A — monitoring concept",
+        "related_terms": [
+            "Population Stability Index",
+            "Feature Store",
+            "Model Monitoring",
+        ],
+        "regulatory_reference": "RBI Model Risk Guidelines",
+    },
+    {
+        "term": "Population Stability Index (PSI)",
+        "category": "Data & Technical",
+        "definition": (
+            "A metric that measures how much the distribution of a variable "
+            "has shifted between two time periods — typically between the "
+            "model training population and the current scoring population. "
+            "PSI below 0.1 indicates no significant shift; 0.1-0.2 indicates "
+            "moderate shift requiring investigation; above 0.2 indicates "
+            "significant shift requiring model review or retraining. "
+            "PSI is the industry standard drift detection metric for "
+            "credit scoring models in Indian banking."
+        ),
+        "source_system": "MDL-001",
+        "field_name": "bureau_score, gst_filing_regularity_pct",
+        "related_terms": ["Model Drift", "Model Monitoring"],
+        "regulatory_reference": "RBI Model Risk Guidelines",
+    },
+    {
+        "term": "Data Classification",
+        "category": "Data & Technical",
+        "definition": (
+            "The process of categorising data assets into sensitivity tiers "
+            "based on the potential harm their unauthorised disclosure, "
+            "modification, or loss could cause. Common tiers are Public, "
+            "Internal, Confidential, and Restricted. Classification drives "
+            "access controls, encryption requirements, retention policies, "
+            "and incident response priorities. Under the DPDP Act 2023, "
+            "personal data and sensitive personal data require specific "
+            "classification and handling controls."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — framework concept",
+        "related_terms": [
+            "Data Catalogue",
+            "DPDP Act",
+            "Sensitive Personal Data",
+        ],
+        "regulatory_reference": "DPDP Act 2023, ISO 27001",
+    },
+    {
+        "term": "Training-Serving Skew",
+        "category": "Data & Technical",
+        "definition": (
+            "A model risk condition where the features used to train a "
+            "model differ from the features computed at inference time, "
+            "causing the model to behave differently in production than "
+            "it did during validation. Common causes include inconsistent "
+            "feature engineering logic between training and serving "
+            "pipelines, or using future data during training that is not "
+            "available at inference time (data leakage)."
+        ),
+        "source_system": "DRV-001",
+        "field_name": "N/A — model risk concept",
+        "related_terms": ["Feature Store", "Model Drift", "Data Lineage"],
+        "regulatory_reference": "RBI Model Risk Guidelines",
+    },
+    {
+        "term": "Data Quality Dimensions",
+        "category": "Data & Technical",
+        "definition": (
+            "The six internationally recognised aspects of data quality "
+            "used to assess whether data is fit for purpose: Completeness "
+            "(are required values present?), Accuracy (are values correct?), "
+            "Validity (do values conform to format and domain rules?), "
+            "Uniqueness (are records that should be unique actually unique?), "
+            "Consistency (do fields agree with each other logically?), and "
+            "Timeliness (was the data fresh when used?). Assessed in "
+            "Module 1 of this governance framework."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — framework concept",
+        "related_terms": ["Data Catalogue", "Great Expectations", "DQ Score"],
+        "regulatory_reference": "ISO 8000, DAMA DMBOK",
+    },
+]
+
+
+REGULATORY_COMPLIANCE_TERMS = [
+    {
+        "term": "DPDP Act 2023 (Digital Personal Data Protection Act)",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "India's primary data protection legislation enacted in August "
+            "2023, replacing the earlier draft Personal Data Protection Bill. "
+            "Establishes rights of Data Principals (individuals whose data "
+            "is processed) and obligations of Data Fiduciaries (entities "
+            "processing personal data). Key obligations include obtaining "
+            "free, specific, informed, and unambiguous consent before "
+            "processing personal data, providing notice of processing "
+            "purposes, enabling data principals to withdraw consent, and "
+            "implementing reasonable security safeguards. Non-compliance "
+            "attracts penalties up to ₹250 crore per violation."
+        ),
+        "source_system": "N/A",
+        "field_name": "pan_number, gstin, proprietor_gender",
+        "related_terms": [
+            "Consent", "Data Fiduciary",
+            "Data Principal", "Sensitive Personal Data",
+        ],
+        "regulatory_reference": "Digital Personal Data Protection Act 2023",
+    },
+    {
+        "term": "Data Fiduciary",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "Under the DPDP Act 2023, any person or entity that determines "
+            "the purpose and means of processing personal data. UGRO Capital "
+            "is a Data Fiduciary with respect to the personal data of its "
+            "loan applicants — it decides what data to collect, why, and "
+            "how. Data Fiduciaries bear primary accountability for DPDP "
+            "compliance, including consent management, data minimisation, "
+            "and breach notification obligations."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — legal concept",
+        "related_terms": ["DPDP Act 2023", "Data Principal", "Consent"],
+        "regulatory_reference": "Digital Personal Data Protection Act 2023, Section 2(i)",
+    },
+    {
+        "term": "Data Principal",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "Under the DPDP Act 2023, the individual to whom personal data "
+            "relates. In the context of UGRO Capital's loan portfolio, the "
+            "Data Principal is the loan applicant — the proprietor or "
+            "director whose PAN, bureau data, and bank statements are "
+            "processed. Data Principals have the right to access their "
+            "data, correct inaccuracies, withdraw consent, and seek "
+            "grievance redressal."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — legal concept",
+        "related_terms": ["DPDP Act 2023", "Data Fiduciary", "Consent"],
+        "regulatory_reference": "Digital Personal Data Protection Act 2023, Section 2(j)",
+    },
+    {
+        "term": "Consent",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "Under the DPDP Act 2023, a freely given, specific, informed, "
+            "and unambiguous indication of the Data Principal's agreement "
+            "to the processing of their personal data for a stated purpose. "
+            "Consent must be obtained before processing begins, must be "
+            "as easy to withdraw as to give, and cannot be bundled with "
+            "terms and conditions. For UGRO Capital, separate consent is "
+            "required for bureau pulls, bank statement access via Account "
+            "Aggregator, and GST data access."
+        ),
+        "source_system": "SRC-001",
+        "field_name": "N/A — process concept",
+        "related_terms": [
+            "DPDP Act 2023",
+            "Data Fiduciary",
+            "Account Aggregator",
+        ],
+        "regulatory_reference": "Digital Personal Data Protection Act 2023, Section 6",
+    },
+    {
+        "term": "RBI Digital Lending Guidelines",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "RBI guidelines issued in September 2022 governing digital "
+            "lending by banks and NBFCs. Key requirements include: all "
+            "loan disbursals and repayments must flow directly between "
+            "borrower and lender bank accounts (no pass-through via "
+            "third parties), borrowers must receive a Key Fact Statement "
+            "before loan execution, data collection must be need-based "
+            "with explicit borrower consent, and automated credit decisions "
+            "must be explainable to the borrower on request."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — regulatory framework",
+        "related_terms": [
+            "DPDP Act 2023",
+            "Fair Practices Code",
+            "Key Fact Statement",
+        ],
+        "regulatory_reference": "RBI Digital Lending Guidelines, September 2022",
+    },
+    {
+        "term": "RBI Fair Practices Code",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "RBI guidelines requiring NBFCs to adopt fair and transparent "
+            "practices in lending. Relevant provisions include: loan "
+            "applications must be acknowledged and decisions communicated "
+            "with reasons for rejection, interest rates and charges must "
+            "be disclosed upfront, and borrowers have the right to "
+            "understand the basis of credit decisions. For AI-based "
+            "credit scoring, this implies a right to explanation — "
+            "a borrower rejected by GRO Score should receive an "
+            "intelligible reason."
+        ),
+        "source_system": "N/A",
+        "field_name": "loan_status, interest_rate_pct",
+        "related_terms": [
+            "RBI Digital Lending Guidelines",
+            "Explainability",
+            "DPDP Act 2023",
+        ],
+        "regulatory_reference": "RBI Master Direction — Fair Practices Code for NBFCs",
+    },
+    {
+        "term": "DPIA (Data Protection Impact Assessment)",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "A structured process for identifying and mitigating privacy "
+            "risks before deploying a new data processing activity or "
+            "system. Required under the DPDP Act 2023 for high-risk "
+            "processing activities — which includes automated credit "
+            "scoring using personal data. A DPIA documents: what data "
+            "is processed, why, what the risks are, and what controls "
+            "mitigate them. Conducted for GRO Score in Module 3 of "
+            "this governance framework."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — process concept",
+        "related_terms": ["DPDP Act 2023", "Consent", "Data Fiduciary"],
+        "regulatory_reference": "DPDP Act 2023, DPDP Rules 2025",
+    },
+    {
+        "term": "NIST AI RMF (AI Risk Management Framework)",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "A voluntary framework published by the US National Institute "
+            "of Standards and Technology in 2023 for managing risks "
+            "associated with AI systems. Organised around four functions: "
+            "Govern (establish AI risk culture and accountability), Map "
+            "(identify and classify AI risks), Measure (analyse and assess "
+            "risks), and Manage (prioritise and treat risks). Assessed "
+            "for GRO Score in Module 6 of this governance framework. "
+            "Referenced alongside ISO 42001 as the two primary AI "
+            "governance standards."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — framework concept",
+        "related_terms": ["ISO 42001", "AI Risk Register", "EU AI Act"],
+        "regulatory_reference": "NIST AI RMF 1.0, January 2023",
+    },
+    {
+        "term": "EU AI Act",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "The European Union's comprehensive AI regulation enacted in "
+            "2024, the first binding AI law of its kind globally. Classifies "
+            "AI systems by risk level: Unacceptable (banned), High Risk "
+            "(strict requirements), Limited Risk (transparency obligations), "
+            "and Minimal Risk (no specific requirements). Credit scoring "
+            "AI systems are explicitly classified as High Risk under Annex "
+            "III, requiring conformity assessments, human oversight, "
+            "explainability, and registration in an EU database. Referenced "
+            "in Module 5's bias audit as an emerging global standard."
+        ),
+        "source_system": "N/A",
+        "field_name": "N/A — regulatory framework",
+        "related_terms": ["NIST AI RMF", "ISO 42001", "Algorithmic Bias"],
+        "regulatory_reference": "EU Artificial Intelligence Act 2024",
+    },
+    {
+        "term": "Algorithmic Bias",
+        "category": "Regulatory & Compliance",
+        "definition": (
+            "Systematic and unfair discrimination in the outputs of an "
+            "AI or algorithmic system against individuals or groups sharing "
+            "a protected characteristic such as gender, religion, caste, "
+            "or geography. In credit scoring, algorithmic bias can manifest "
+            "as higher rejection rates or interest rates for female-led "
+            "businesses or businesses from certain states, even when "
+            "controlling for creditworthiness. Assessed using fairness "
+            "metrics including demographic parity, equalised odds, and "
+            "individual fairness in Module 5 of this framework."
+        ),
+        "source_system": "MDL-001",
+        "field_name": "proprietor_gender, state, sector",
+        "related_terms": [
+            "EU AI Act",
+            "RBI Fair Practices Code",
+            "NIST AI RMF",
+        ],
+        "regulatory_reference": (
+            "EU AI Act 2024, RBI Fair Practices Code, "
+            "Constitution of India Article 14 (equality before law)"
+        ),
+    },
+]
+
+
+
+def main():
+    all_terms = (
+        CREDIT_RISK_TERMS +
+        MSME_BUSINESS_TERMS +
+        DATA_TECHNICAL_TERMS +
+        REGULATORY_COMPLIANCE_TERMS
+    )
+
+    # Write JSON
+    output = {
+        "glossary_version": "1.0",
+        "assessment_date": str(date.today()),
+        "organisation": "UGRO Capital Limited",
+        "prepared_by": "GRO Shield Governance Framework",
+        "total_terms": len(all_terms),
+        "terms": all_terms,
+    }
+
+    json_path = "../glossary/business_glossary.json"
+    with open(json_path, "w") as f:
+        json.dump(output, f, indent=2)
+
+    # Write CSV for easy viewing in Excel/Sheets
+    csv_path = "../glossary/business_glossary.csv"
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=[
+            "term", "category", "definition",
+            "source_system", "field_name",
+            "regulatory_reference",
+        ])
+        writer.writeheader()
+        for term in all_terms:
+            writer.writerow({
+                "term": term["term"],
+                "category": term["category"],
+                "definition": term["definition"],
+                "source_system": term["source_system"],
+                "field_name": term["field_name"],
+                "regulatory_reference": term["regulatory_reference"],
+            })
+
+    print(f"Business glossary written -> {json_path}")
+    print(f"Business glossary CSV -> {csv_path}")
+    print(f"Total terms: {len(all_terms)}")
+    print()
+    print("Terms by category:")
+    categories = {}
+    for term in all_terms:
+        cat = term["category"]
+        categories[cat] = categories.get(cat, 0) + 1
+    for cat, count in categories.items():
+        print(f"  {cat}: {count} terms")
+
+
+if __name__ == "__main__":
+    main()
