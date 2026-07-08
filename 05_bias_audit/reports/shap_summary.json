@@ -1,0 +1,61 @@
+{
+  "top_10_features": [
+    {
+      "feature": "bureau_score",
+      "mean_abs_shap": 1.13116455078125,
+      "is_protected": false
+    },
+    {
+      "feature": "dpd_90_count_12m",
+      "mean_abs_shap": 0.18752379715442657,
+      "is_protected": false
+    },
+    {
+      "feature": "write_off_flag",
+      "mean_abs_shap": 0.10040662437677383,
+      "is_protected": false
+    },
+    {
+      "feature": "gst_turnover_growth_yoy",
+      "mean_abs_shap": 0.08102997392416,
+      "is_protected": false
+    },
+    {
+      "feature": "bounce_count_6m",
+      "mean_abs_shap": 0.07184258103370667,
+      "is_protected": false
+    },
+    {
+      "feature": "interest_rate_pct",
+      "mean_abs_shap": 0.0702265128493309,
+      "is_protected": false
+    },
+    {
+      "feature": "requested_loan_amount",
+      "mean_abs_shap": 0.06619720160961151,
+      "is_protected": false
+    },
+    {
+      "feature": "avg_monthly_debit_turnover",
+      "mean_abs_shap": 0.06376110017299652,
+      "is_protected": false
+    },
+    {
+      "feature": "credit_utilization_ratio",
+      "mean_abs_shap": 0.06298569589853287,
+      "is_protected": false
+    },
+    {
+      "feature": "cash_deposit_ratio",
+      "mean_abs_shap": 0.06171880289912224,
+      "is_protected": false
+    }
+  ],
+  "bureau_score_shap_correlation": -0.9429,
+  "mean_total_shap_by_gender": {
+    "Female": -0.7691,
+    "Male": -0.8407,
+    "Other": -0.9461
+  },
+  "protected_features_in_top10": []
+}
