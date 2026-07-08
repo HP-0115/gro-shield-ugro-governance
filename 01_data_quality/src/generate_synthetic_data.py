@@ -146,12 +146,16 @@ def generate(n_rows, seed):
         )[0])
 
         # default_flag: only meaningful for disbursed loans.
-        # Weakly correlated with bureau score and DPD history.
+        # Strongly correlated with bureau score, DPD history,
+        # write-off flag, and bounce count — realistic credit signal
+        # strength for XGBoost to learn from (AUC target: 0.78-0.84).
         if loan_status == "Disbursed":
             default_probability = float(np.clip(
                 0.25
-                - (bureau_score - 600) / 1500
-                + dpd_90_count_12m * 0.06,
+                - (bureau_score - 600) / 400
+                + dpd_90_count_12m * 0.12
+                + write_off_flag * 0.15
+                + bounce_count_6m * 0.015,
                 0.02, 0.60
             ))
             default_flag = int(np.random.rand() < default_probability)

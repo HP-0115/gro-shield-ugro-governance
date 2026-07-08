@@ -1,0 +1,13 @@
+{
+  "auc_roc": 0.8051,
+  "average_precision": 0.4005,
+  "true_positives": 139,
+  "true_negatives": 1039,
+  "false_positives": 238,
+  "false_negatives": 97,
+  "precision_default": 0.3687,
+  "recall_default": 0.589,
+  "n_test": 1513,
+  "n_train": 6052,
+  "feature_count": 48
+}
