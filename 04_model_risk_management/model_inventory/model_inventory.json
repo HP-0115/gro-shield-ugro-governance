@@ -1,0 +1,80 @@
+{
+  "inventory_metadata": {
+    "document_title": "GRO Shield Model Inventory Register",
+    "scope": "UGRO Capital — GRO Score Credit Scoring System",
+    "classification": "Confidential",
+    "prepared_by": "GRO Shield Independent Governance Assessment",
+    "disclaimer": "This is an independent external assessment built from publicly available information and synthetic data. Not affiliated with UGRO Capital.",
+    "version": "1.0",
+    "effective_date": "2025-01-01",
+    "next_review_date": "2026-01-01"
+  },
+  "models": [
+    {
+      "model_id": "MDL-001",
+      "model_name": "GRO Score 3.0 (Proxy)",
+      "model_type": "Binary Classification — Credit Scoring",
+      "algorithm": "XGBoost Gradient Boosted Trees",
+      "version": "3.0 (proxy v1 for governance assessment)",
+      "status": "Production",
+      "owner": "Data Science Team",
+      "primary_use": "MSME credit underwriting — predicts probability of default (PD) for loan applicants",
+      "decision_use": "Approve / Reject / Refer loan applications; set interest rate tier",
+      "business_unit": "Credit Risk",
+      "deployment_date": "2024-01-01",
+      "last_validation_date": "2024-06-01",
+      "next_validation_due": "2025-06-01",
+      "training_data": {
+        "source": "Synthetic MSME dataset (proxy) — bureau, banking, GST data",
+        "rows": 7563,
+        "features": 48,
+        "target": "default_flag (binary)",
+        "training_period": "Disbursed loans only (reject inference limitation applies)",
+        "seed": 42
+      },
+      "performance_metrics": {
+        "auc_roc": 0.8051,
+        "average_precision": 0.4005,
+        "precision_default_class": 0.37,
+        "recall_default_class": 0.59,
+        "accuracy": 0.78,
+        "test_set_size": 1513,
+        "default_rate_test": 0.156
+      },
+      "risk_rating": {
+        "materiality": "High",
+        "complexity": "High",
+        "overall_risk_rating": "High",
+        "rating_rationale": "Directly drives lending decisions across entire MSME portfolio. Gradient boosted ensemble with 25,000+ features (per public disclosure). Limited interpretability without SHAP. Reject inference bias in training data."
+      },
+      "known_limitations": [
+        "Reject inference bias: model trained only on disbursed loans; no ground truth for rejected applicants",
+        "Proxy model: built on synthetic data; does not reflect actual GRO Score 3.0 weights or architecture",
+        "Protected attributes (gender, state, sector) included as features — requires bias monitoring",
+        "Average precision of 0.40 indicates moderate lift; 41% of defaults are missed (false negatives)",
+        "Model performance may degrade if MSME economic conditions shift materially from training period"
+      ],
+      "regulatory_references": [
+        "RBI Digital Lending Guidelines 2022 — Fair Practices Code",
+        "RBI Master Direction on NBFC — model risk expectations",
+        "DPDP Act 2023 — automated decision-making transparency",
+        "EU AI Act — credit scoring classified as High Risk AI System (Article 6)",
+        "NIST AI RMF — Map/Measure/Manage functions"
+      ],
+      "validation_status": {
+        "last_independent_validation": "2024-06-01",
+        "validation_outcome": "Conditional Pass",
+        "open_findings": 3,
+        "critical_findings": 1,
+        "finding_summary": "Critical: algorithmic bias against female proprietors identified in bias audit (Module 5). High: reject inference limitation not documented in model card at deployment. Medium: PSI monitoring not implemented at go-live."
+      },
+      "monitoring": {
+        "psi_monitoring": "Implemented (Module 4 dashboard)",
+        "psi_threshold_warning": 0.1,
+        "psi_threshold_critical": 0.2,
+        "monitoring_frequency": "Monthly",
+        "drift_detected": false
+      }
+    }
+  ]
+}
