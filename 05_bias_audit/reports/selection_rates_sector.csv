@@ -1,0 +1,9 @@
+sector,n,actual_default_rate,predicted_default_rate,avg_predicted_proba,approval_rate
+Retail Trade,188,0.1968,0.2979,0.3251,0.7021
+Food Processing,175,0.1314,0.2971,0.3349,0.7029
+Textile & Apparel,169,0.2012,0.2722,0.3155,0.7278
+Agriculture Allied,185,0.1351,0.2595,0.2916,0.7405
+Pharma & Healthcare,191,0.1518,0.2461,0.2973,0.7539
+IT/ITES Services,198,0.1162,0.2273,0.2883,0.7727
+Construction Materials,205,0.1317,0.2049,0.3005,0.7951
+Auto Components,202,0.1881,0.203,0.2805,0.797

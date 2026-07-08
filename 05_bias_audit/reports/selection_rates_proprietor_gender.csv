@@ -1,0 +1,4 @@
+proprietor_gender,n,actual_default_rate,predicted_default_rate,avg_predicted_proba,approval_rate
+Female,347,0.1902,0.2767,0.3166,0.7233
+Male,1145,0.145,0.2419,0.2996,0.7581
+Other,21,0.1905,0.1905,0.2924,0.8095

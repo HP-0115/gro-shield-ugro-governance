@@ -1,0 +1,11 @@
+state,n,actual_default_rate,predicted_default_rate,avg_predicted_proba,approval_rate
+Uttar Pradesh,146,0.1986,0.3014,0.3253,0.6986
+West Bengal,122,0.1311,0.2869,0.3015,0.7131
+Madhya Pradesh,144,0.1806,0.2847,0.3355,0.7153
+Punjab,166,0.1506,0.2831,0.3134,0.7169
+Delhi,159,0.1006,0.239,0.2841,0.761
+Gujarat,139,0.2086,0.2374,0.3165,0.7626
+Maharashtra,186,0.1667,0.2258,0.3135,0.7742
+Tamil Nadu,160,0.1438,0.225,0.2827,0.775
+Karnataka,140,0.1357,0.2214,0.2821,0.7786
+Rajasthan,151,0.1457,0.1987,0.2802,0.8013

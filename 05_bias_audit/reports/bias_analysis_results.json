@@ -1,0 +1,216 @@
+{
+  "proprietor_gender": {
+    "attribute": "proprietor_gender",
+    "demographic_parity_difference": 0.0862,
+    "demographic_parity_ratio": 0.6885,
+    "equalized_odds_difference": 0.1717,
+    "dpd_breach": false,
+    "eod_breach": true,
+    "four_fifths_breach": true,
+    "flagged_groups": [
+      "Other"
+    ],
+    "severity": "CRITICAL",
+    "by_group_summary": {
+      "accuracy": {
+        "Female": 0.7637,
+        "Male": 0.7808,
+        "Other": 0.9048
+      },
+      "precision": {
+        "Female": 0.4167,
+        "Male": 0.3466,
+        "Other": 0.75
+      },
+      "recall": {
+        "Female": 0.6061,
+        "Male": 0.5783,
+        "Other": 0.75
+      },
+      "selection_rate": {
+        "Female": 0.2767,
+        "Male": 0.2419,
+        "Other": 0.1905
+      },
+      "fpr": {
+        "Female": 0.1993,
+        "Male": 0.1849,
+        "Other": 0.0588
+      },
+      "fnr": {
+        "Female": 0.3939,
+        "Male": 0.4217,
+        "Other": 0.25
+      }
+    }
+  },
+  "state": {
+    "attribute": "state",
+    "demographic_parity_difference": 0.1027,
+    "demographic_parity_ratio": 0.6592,
+    "equalized_odds_difference": 0.4461,
+    "dpd_breach": true,
+    "eod_breach": true,
+    "four_fifths_breach": true,
+    "flagged_groups": [
+      "Delhi",
+      "Gujarat",
+      "Karnataka",
+      "Maharashtra",
+      "Rajasthan",
+      "Tamil Nadu"
+    ],
+    "severity": "CRITICAL",
+    "by_group_summary": {
+      "accuracy": {
+        "Delhi": 0.7233,
+        "Gujarat": 0.7986,
+        "Karnataka": 0.7571,
+        "Madhya Pradesh": 0.7153,
+        "Maharashtra": 0.8011,
+        "Punjab": 0.7831,
+        "Rajasthan": 0.8411,
+        "Tamil Nadu": 0.8062,
+        "Uttar Pradesh": 0.8014,
+        "West Bengal": 0.7459
+      },
+      "precision": {
+        "Delhi": 0.1316,
+        "Gujarat": 0.5152,
+        "Karnataka": 0.2581,
+        "Madhya Pradesh": 0.3171,
+        "Maharashtra": 0.4286,
+        "Punjab": 0.383,
+        "Rajasthan": 0.4667,
+        "Tamil Nadu": 0.3889,
+        "Uttar Pradesh": 0.5,
+        "West Bengal": 0.2857
+      },
+      "recall": {
+        "Delhi": 0.3125,
+        "Gujarat": 0.5862,
+        "Karnataka": 0.4211,
+        "Madhya Pradesh": 0.5,
+        "Maharashtra": 0.5806,
+        "Punjab": 0.72,
+        "Rajasthan": 0.6364,
+        "Tamil Nadu": 0.6087,
+        "Uttar Pradesh": 0.7586,
+        "West Bengal": 0.625
+      },
+      "selection_rate": {
+        "Delhi": 0.239,
+        "Gujarat": 0.2374,
+        "Karnataka": 0.2214,
+        "Madhya Pradesh": 0.2847,
+        "Maharashtra": 0.2258,
+        "Punjab": 0.2831,
+        "Rajasthan": 0.1987,
+        "Tamil Nadu": 0.225,
+        "Uttar Pradesh": 0.3014,
+        "West Bengal": 0.2869
+      },
+      "fpr": {
+        "Delhi": 0.2308,
+        "Gujarat": 0.1455,
+        "Karnataka": 0.1901,
+        "Madhya Pradesh": 0.2373,
+        "Maharashtra": 0.1548,
+        "Punjab": 0.2057,
+        "Rajasthan": 0.124,
+        "Tamil Nadu": 0.1606,
+        "Uttar Pradesh": 0.188,
+        "West Bengal": 0.2358
+      },
+      "fnr": {
+        "Delhi": 0.6875,
+        "Gujarat": 0.4138,
+        "Karnataka": 0.5789,
+        "Madhya Pradesh": 0.5,
+        "Maharashtra": 0.4194,
+        "Punjab": 0.28,
+        "Rajasthan": 0.3636,
+        "Tamil Nadu": 0.3913,
+        "Uttar Pradesh": 0.2414,
+        "West Bengal": 0.375
+      }
+    }
+  },
+  "sector": {
+    "attribute": "sector",
+    "demographic_parity_difference": 0.0949,
+    "demographic_parity_ratio": 0.6814,
+    "equalized_odds_difference": 0.2254,
+    "dpd_breach": false,
+    "eod_breach": true,
+    "four_fifths_breach": true,
+    "flagged_groups": [
+      "Auto Components",
+      "Construction Materials",
+      "IT/ITES Services"
+    ],
+    "severity": "CRITICAL",
+    "by_group_summary": {
+      "accuracy": {
+        "Agriculture Allied": 0.7459,
+        "Auto Components": 0.8465,
+        "Construction Materials": 0.8488,
+        "Food Processing": 0.7429,
+        "IT/ITES Services": 0.7677,
+        "Pharma & Healthcare": 0.7487,
+        "Retail Trade": 0.7606,
+        "Textile & Apparel": 0.7515
+      },
+      "precision": {
+        "Agriculture Allied": 0.2708,
+        "Auto Components": 0.5854,
+        "Construction Materials": 0.4524,
+        "Food Processing": 0.2885,
+        "IT/ITES Services": 0.2444,
+        "Pharma & Healthcare": 0.2979,
+        "Retail Trade": 0.4286,
+        "Textile & Apparel": 0.413
+      },
+      "recall": {
+        "Agriculture Allied": 0.52,
+        "Auto Components": 0.6316,
+        "Construction Materials": 0.7037,
+        "Food Processing": 0.6522,
+        "IT/ITES Services": 0.4783,
+        "Pharma & Healthcare": 0.4828,
+        "Retail Trade": 0.6486,
+        "Textile & Apparel": 0.5588
+      },
+      "selection_rate": {
+        "Agriculture Allied": 0.2595,
+        "Auto Components": 0.203,
+        "Construction Materials": 0.2049,
+        "Food Processing": 0.2971,
+        "IT/ITES Services": 0.2273,
+        "Pharma & Healthcare": 0.2461,
+        "Retail Trade": 0.2979,
+        "Textile & Apparel": 0.2722
+      },
+      "fpr": {
+        "Agriculture Allied": 0.2188,
+        "Auto Components": 0.1037,
+        "Construction Materials": 0.1292,
+        "Food Processing": 0.2434,
+        "IT/ITES Services": 0.1943,
+        "Pharma & Healthcare": 0.2037,
+        "Retail Trade": 0.2119,
+        "Textile & Apparel": 0.2
+      },
+      "fnr": {
+        "Agriculture Allied": 0.48,
+        "Auto Components": 0.3684,
+        "Construction Materials": 0.2963,
+        "Food Processing": 0.3478,
+        "IT/ITES Services": 0.5217,
+        "Pharma & Healthcare": 0.5172,
+        "Retail Trade": 0.3514,
+        "Textile & Apparel": 0.4412
+      }
+    }
+  }
+}

@@ -180,9 +180,22 @@ def save_artifacts(model, X_test, y_test, metrics, feature_names):
     print(f"Feature names saved: {feature_path}")
 
     # Save test set with predictions for downstream modules
-    X_test_save = X_test.copy()
+    # Also reload original categorical columns from clean dataset
+    # so Module 5 bias audit has access to pre-encoded protected attributes
+    full_df = pd.read_csv(DATA_PATH)
+    disbursed_df = full_df[full_df["loan_status"] == "Disbursed"].copy()
+
+    # Match test set rows using index alignment from split
+    original_cats = disbursed_df[CATEGORICAL_COLS].loc[X_test.index].reset_index(drop=True)
+
+    X_test_save = X_test.copy().reset_index(drop=True)
     X_test_save["default_flag"] = y_test.values
     X_test_save["predicted_proba"] = model.predict_proba(X_test)[:, 1]
+
+    # Prepend original categorical columns for bias audit
+    for col in CATEGORICAL_COLS:
+        X_test_save[col] = original_cats[col].values
+
     test_path = os.path.join(DATA_OUT_DIR, "test_set_with_predictions.csv")
     X_test_save.to_csv(test_path, index=False)
     print(f"Test set saved: {test_path}")
