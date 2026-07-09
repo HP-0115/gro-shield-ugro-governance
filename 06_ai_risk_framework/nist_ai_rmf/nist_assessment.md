@@ -8,7 +8,7 @@
 **Framework:** NIST AI RMF 1.0 (January 2023) + ISO 42001:2023
 **Model Assessed:** GRO Score 3.0 (Proxy) — MDL-001
 **Version:** 1.0
-**Date:** January 2025
+**Date:** July 2026
 **Prepared By:** GRO Shield Independent Governance Assessment
 
 ---
@@ -557,4 +557,4 @@ NIST AI RMF with a Plan-Do-Check-Act management system framework.
 ---
 
 *Assessment based on NIST AI RMF 1.0 (January 2023) and ISO 42001:2023.*
-*GRO Shield Independent Governance Assessment, January 2025.*
+*GRO Shield Independent Governance Assessment, July 2026.*

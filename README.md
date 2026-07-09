@@ -13,12 +13,12 @@ credit scoring model called GRO Score 3.0 for MSME lending.
 
 ## Assessment Date
 
-**This assessment was conducted in January 2025** and covers regulatory
+**This assessment was conducted in July 2026** and covers regulatory
 frameworks, public disclosures, and technical standards current as of
 that date. Specific frameworks referenced include DPDP Act 2023,
 DPDP Rules 2025 (draft), NIST AI RMF 1.0 (January 2023), NIST AI 600-1
 (July 2024), and EU AI Act. Readers reviewing this assessment after
-January 2025 should verify whether referenced regulations or standards
+July 2026 should verify whether referenced regulations or standards
 have been updated.
 
 ---
@@ -44,7 +44,7 @@ citable compliance gap that anchors the Module 3 analysis.
 | 05 | Algorithmic Bias Audit | ✅ Complete |
 | 06 | AI Risk Framework | ✅ Complete |
 | 07 | GenAI Governance | ✅ Complete |
-| 08 | Change Management | 🔄 In Progress |
+| 08 | Change Management | ✅ Complete |
 
 ---
 
@@ -117,4 +117,4 @@ streamlit run 07_genai_governance/dashboard/observability_dashboard.py
 ---
 
 *GRO Shield — Independent Data & AI Governance Assessment*
-*Assessment date: January 2025*
+*Assessment date: July 2026*

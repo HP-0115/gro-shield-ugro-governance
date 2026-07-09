@@ -6,8 +6,8 @@
     "prepared_by": "GRO Shield Independent Governance Assessment",
     "disclaimer": "This is an independent external assessment built from publicly available information and synthetic data. Not affiliated with UGRO Capital.",
     "version": "1.0",
-    "effective_date": "2025-01-01",
-    "next_review_date": "2026-01-01"
+    "effective_date": "2026-07-01",
+    "next_review_date": "2027-07-01"
   },
   "models": [
     {
@@ -21,9 +21,9 @@
       "primary_use": "MSME credit underwriting — predicts probability of default (PD) for loan applicants",
       "decision_use": "Approve / Reject / Refer loan applications; set interest rate tier",
       "business_unit": "Credit Risk",
-      "deployment_date": "2024-01-01",
-      "last_validation_date": "2024-06-01",
-      "next_validation_due": "2025-06-01",
+      "deployment_date": "2025-07-01",
+      "last_validation_date": "2026-01-01",
+      "next_validation_due": "2027-01-01",
       "training_data": {
         "source": "Synthetic MSME dataset (proxy) — bureau, banking, GST data",
         "rows": 7563,
@@ -62,7 +62,7 @@
         "NIST AI RMF — Map/Measure/Manage functions"
       ],
       "validation_status": {
-        "last_independent_validation": "2024-06-01",
+        "last_independent_validation": "2026-01-01",
         "validation_outcome": "Conditional Pass",
         "open_findings": 3,
         "critical_findings": 1,

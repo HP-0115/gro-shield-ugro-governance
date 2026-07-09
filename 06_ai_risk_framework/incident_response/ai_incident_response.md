@@ -6,7 +6,7 @@
 > UGRO Capital.
 
 **Version:** 1.0
-**Effective Date:** 1 January 2025
+**Effective Date:** 1 July 2026
 **Owner:** Chief Risk Officer
 **Next Review:** 1 January 2026
 
@@ -306,4 +306,4 @@ review process and the quarterly Model Risk Committee review.
 *AI Incident Response Procedure v1.0*
 *Aligned with: NIST AI RMF MG-4, ISO 42001 Clause 10,*
 *DPDP Act 2023 Section 8(6), RBI Digital Lending Guidelines 2022.*
-*GRO Shield Independent Governance Assessment, January 2025.*
+*GRO Shield Independent Governance Assessment, July 2026.*

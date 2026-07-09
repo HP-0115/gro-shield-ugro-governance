@@ -6,7 +6,7 @@
 > UGRO Capital.
 
 **Version:** 1.0
-**Date:** January 2025
+**Date:** July 2026
 **Prepared By:** GRO Shield Independent Governance Assessment
 
 ---
@@ -471,4 +471,4 @@ senior message rather than a governance team asking for cooperation.
 
 ---
 
-*GRO Shield Independent Governance Assessment, January 2025.*
+*GRO Shield Independent Governance Assessment, July 2026.*

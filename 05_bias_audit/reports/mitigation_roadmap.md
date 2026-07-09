@@ -6,7 +6,7 @@
 > UGRO Capital.
 
 **Version:** 1.0
-**Date:** January 2025
+**Date:** July 2026
 **Related Document:** bias_audit_report.md
 **Model:** GRO Score 3.0 (Proxy) — MDL-001
 
@@ -259,6 +259,6 @@ right to understand why their application was rejected. Implement:
 
 ---
 
-*GRO Shield Independent Governance Assessment, January 2025.*
+*GRO Shield Independent Governance Assessment, July 2026.*
 *References: Chouldechova (2017), Fairlearn documentation,*
 *RBI Fair Practices Code, DPDP Act 2023, EU AI Act Article 10.*

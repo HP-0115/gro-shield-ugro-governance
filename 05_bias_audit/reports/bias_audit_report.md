@@ -8,7 +8,7 @@
 
 **Document Classification:** Confidential
 **Version:** 1.0
-**Audit Date:** January 2025
+**Audit Date:** July 2026
 **Model Audited:** GRO Score 3.0 (Proxy) — MDL-001
 **Prepared By:** GRO Shield Independent Governance Assessment
 
@@ -367,4 +367,4 @@ to prioritise. See the Mitigation Roadmap for detailed recommendations.
 
 *Audit methodology: Fairlearn 0.10.x, SHAP TreeExplainer, scikit-learn.*
 *References: Chouldechova (2017), Mitchell et al. (2019), NIST AI RMF.*
-*GRO Shield Independent Governance Assessment, January 2025.*
+*GRO Shield Independent Governance Assessment, July 2026.*

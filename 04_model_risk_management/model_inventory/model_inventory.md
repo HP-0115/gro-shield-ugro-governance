@@ -8,7 +8,7 @@
 
 **Document Classification:** Confidential
 **Version:** 1.0
-**Effective Date:** 1 January 2025
+**Effective Date:** 1 July 2026
 **Next Review:** 1 January 2026
 **Prepared By:** GRO Shield Independent Governance Assessment
 

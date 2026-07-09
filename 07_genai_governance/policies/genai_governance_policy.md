@@ -6,7 +6,7 @@
 > UGRO Capital. This policy is a governance recommendation.
 
 **Version:** 1.0
-**Effective Date:** 1 January 2025
+**Effective Date:** 1 July 2026
 **Next Review:** 1 January 2026
 **Owner:** Chief Data Officer
 **Approved By:** Board Risk Committee (recommended)
@@ -282,4 +282,4 @@ This policy must be reviewed:
 *GenAI Governance Policy v1.0*
 *Aligned with: NIST AI 600-1 (2024), DPDP Act 2023,*
 *RBI Consumer Protection Framework, EU AI Act.*
-*GRO Shield Independent Governance Assessment, January 2025.*
+*GRO Shield Independent Governance Assessment, July 2026.*

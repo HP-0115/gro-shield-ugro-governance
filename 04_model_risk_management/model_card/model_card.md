@@ -19,7 +19,7 @@
 | Algorithm | XGBoost Gradient Boosted Trees |
 | Framework | XGBoost 2.x, scikit-learn, Python 3.11 |
 | Developed By | GRO Shield Independent Governance Assessment |
-| Date | January 2025 |
+| Date | July 2026 |
 | Contact | GRO Shield Assessment Team |
 | Licence | Assessment use only — not for production deployment |
 
@@ -77,7 +77,7 @@ UGRO Capital's publicly disclosed data structure:
 | Target variable | default_flag (1 = default, 0 = no default) |
 | Default rate (training) | 15.6% |
 | Random seed | 42 (fully reproducible) |
-| Dataset version | v2 (regenerated January 2025 — see versioning note) |
+| Dataset version | v2 (regenerated July 2026 — see versioning note) |
 
 ### Dataset Versioning Note
 The synthetic dataset was regenerated (v2) during Module 4 development
@@ -249,9 +249,9 @@ by the Risk Committee, not left as a default hyperparameter choice.
 |----------|-----------|---------------|----------|
 | Independent model validation | Annual | June 2024 | June 2025 |
 | PSI monitoring review | Monthly | Ongoing | Monthly |
-| Bias audit | Annual | January 2025 | January 2026 |
-| Full model retraining | As needed / Annual | January 2025 | January 2026 |
-| Model card review | At each retraining | January 2025 | January 2026 |
+| Bias audit | Annual | July 2026 | January 2026 |
+| Full model retraining | As needed / Annual | July 2026 | January 2026 |
+| Model card review | At each retraining | July 2026 | January 2026 |
 
 ### Open Model Risk Findings
 
@@ -281,4 +281,4 @@ This model card should **not** be used as:
 ---
 
 *Model Card format adapted from Mitchell et al. (2019) "Model Cards for
-Model Reporting." GRO Shield Independent Governance Assessment, January 2025.*
+Model Reporting." GRO Shield Independent Governance Assessment, July 2026.*

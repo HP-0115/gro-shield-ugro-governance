@@ -7,7 +7,7 @@
 > statement of UGRO Capital's actual policies.
 
 **Version:** 1.0
-**Effective Date:** 1 January 2025
+**Effective Date:** 1 July 2026
 **Next Review:** 1 January 2026
 **Owner:** Chief Risk Officer
 **Approved By:** Board Risk Committee (recommended)
