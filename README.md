@@ -1,6 +1,6 @@
-# GRO Shield — Independent Data & AI Governance Assessment of UGRO Capital
+# GRO Shield — Independent Data Privacy & AI Governance Assessment of UGRO Capital
 
-An independent, external Data & AI governance portfolio project assessing
+An independent, external data privacy and AI governance portfolio project assessing
 UGRO Capital, a publicly listed Indian "DataTech NBFC" that uses an AI
 credit scoring model called GRO Score 3.0 for MSME lending.
 
@@ -50,9 +50,11 @@ citable compliance gap that anchors the Module 3 analysis.
 
 ## Key Findings
 
-- **Module 3:** 15 compliance gaps identified (4 critical) — anchor finding
-  is UGRO Capital's privacy policy referencing withdrawn PDP Bill 2021
-  instead of enacted DPDP Act 2023
+- **Module 3:** DPDP Act 2023 compliance gap analysis — 15 gaps identified
+  (4 critical), anchored by UGRO Capital's privacy policy referencing the
+  withdrawn PDP Bill 2021 instead of the enacted DPDP Act 2023. Deliverables:
+  **DPIA** on GRO Score, **consent management system**, **Records of Processing
+  Activities (RoPA)** register, and **72-hour breach response playbook**
 - **Module 4:** Proxy XGBoost model trained on 7,563 MSME loan records
   achieves AUC-ROC 0.805; reject inference bias documented in model card
 - **Module 5:** All three protected attributes (gender, state, sector)
@@ -61,7 +63,7 @@ citable compliance gap that anchors the Module 3 analysis.
   confirms proxy bias via distributional confounding
 - **Module 6:** NIST AI RMF assessment — GOVERN and MANAGE rated maturity
   level 2; 32-risk AI risk register with 12 Critical ratings
-- **Module 7:** GenAI guardrail system with PII scanner (Aadhaar/PAN/GSTIN),
+- **Module 7:** GenAI guardrail system with PII detection and redaction (Aadhaar/PAN/GSTIN),
   topic boundary enforcement, hallucination detection, and audit logging;
   NIST AI 600-1 assessment across all 12 GenAI risk categories
 
@@ -116,5 +118,5 @@ streamlit run 07_genai_governance/dashboard/observability_dashboard.py
 
 ---
 
-*GRO Shield — Independent Data & AI Governance Assessment*
+*GRO Shield — Independent Data Privacy & AI Governance Assessment*
 *Assessment date: July 2026*
